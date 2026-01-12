@@ -9,7 +9,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class SteamInventoryInfo {
-    private static final int APP_ID = 730; //cs2
+    private static final int APP_ID = 730; // cs2
 
     public static JSONObject getInventoryItems(String steamId, int contextId) {
         String urlString = "https://steamcommunity.com/inventory/" + steamId + "/" + APP_ID + "/" + contextId;
@@ -30,18 +30,19 @@ public class SteamInventoryInfo {
             if (jsonResponse.has("descriptions")) {
                 return jsonResponse;
             } else {
-                System.out.println("Ошибка при получении предметов: " + jsonResponse.optString("message", "Неизвестная ошибка"));
+                System.out.println("Error while retrieving items: " +
+                        jsonResponse.optString("message", "Unknown error"));
                 return null;
             }
         } catch (Exception e) {
-            System.out.println("Ошибка HTTP запроса: " + e.getMessage());
+            System.out.println("HTTP request error: " + e.getMessage());
             return null;
         }
     }
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Введите SteamID64 профиля Steam: ");
+        System.out.print("Enter SteamID64 of the Steam profile: ");
         String steamId = scanner.nextLine();
         scanner.close();
 
@@ -49,7 +50,8 @@ public class SteamInventoryInfo {
         if (inventory != null) {
             JSONArray assets = inventory.getJSONArray("assets");
             JSONArray descriptions = inventory.getJSONArray("descriptions");
-            System.out.println("Предметы инвентаря:");
+            System.out.println("Inventory items:");
+            System.out.println("---");
 
             for (int i = 0; i < assets.length(); i++) {
                 JSONObject asset = assets.getJSONObject(i);
@@ -60,14 +62,15 @@ public class SteamInventoryInfo {
                     if (description.getString("classid").equals(classid)) {
                         System.out.println("Name: " + description.getString("name"));
                         System.out.println("Type: " + description.getString("type"));
-                        System.out.println("Marketable: " + (description.getInt("marketable") == 1 ? "Yes" : "No"));
+                        System.out.println("Marketable: " +
+                                (description.getInt("marketable") == 1 ? "Yes" : "No"));
                         System.out.println("---");
                         break;
                     }
                 }
             }
         } else {
-            System.out.println("Не удалось получить предметы инвентаря.");
+            System.out.println("Failed to retrieve inventory items.");
         }
     }
 }
