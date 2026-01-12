@@ -1,4 +1,5 @@
-package org.example;
+package org.abik.steam_inventory_parcer;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -8,7 +9,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class SteamInventoryInfo {
-    private static final int APP_ID = 730;
+    private static final int APP_ID = 730; //cs2
 
     public static JSONObject getInventoryItems(String steamId, int contextId) {
         String urlString = "https://steamcommunity.com/inventory/" + steamId + "/" + APP_ID + "/" + contextId;
