@@ -1,4 +1,4 @@
-package org.abik.steam_inventory_parcer;
+package org.abik.steam_inventory_parser;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

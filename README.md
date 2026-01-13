@@ -24,7 +24,7 @@ By default, the program fetches items from **CS2 (app_id = 730)**, but you can c
 3. Compile and run the program:
    ```bash
    javac -cp json.jar SteamInventoryInfo.java
-   java -cp .:json.jar org.abik.steam_inventory_parcer.SteamInventoryInfo
+   java -cp .:json.jar org.abik.steam_inventory_parser.SteamInventoryInfo
     ````
 
 4. Enter the SteamID64 when prompted.
